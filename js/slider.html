@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>초간단 슬라이드</title>
+    <style>
+        #slide {
+            width: 320px;
+            overflow: hidden;
+        }
+        #slide-container {
+            padding: 0;
+            display: flex;
+            transition: 0.3s;
+        }
+        #slide-container li {
+            list-style-type: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="slide">
+        <ul id="slide-container">
+            <li><img src="https://placeimg.com/320/320/animal" /></li>
+            <li><img src="https://placeimg.com/320/320/nature" /></li>
+            <li><img src="https://placeimg.com/320/320/people" /></li>
+            <li><img src="https://placeimg.com/320/320/tech" /></li>
+            <li><img src="https://placeimg.com/320/320/any" /></li>
+        </ul>
+    </div>
+    <button type="button" onclick="prev()">이전</button>
+    <button type="button" onclick="next()">다음</button>
+    <script>
+        var pos = 0;
+        var slideLength = document.querySelectorAll('#slide-container li').length - 1;
+        var slideWidth = slideLength * 320 * -1;
+
+        function next() {
+            if (pos > slideWidth) {
+                pos -= 320;
+                document.querySelector('#slide-container').style.transform = 'translateX(' + pos + 'px)';
+            }
+        }
+
+        function prev() {
+            if (pos < 0) {
+                pos += 320;
+                document.querySelector('#slide-container').style.transform = 'translateX(' + pos + 'px)';
+            }
+        }
+    </script>
+</body>
+</html>
